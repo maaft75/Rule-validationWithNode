@@ -8,4 +8,4 @@ app.use(bodyParser.json());
 
 app.use('/', userRoutes);
 
-app.listen(PORT, () => { console.log(`App is running on port: ${PORT}`) })
+app.listen(process.env.PORT || 5000)
