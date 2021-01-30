@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import { validationClass, dataClass, responseClass } from '../Response/response.js';
 
 const router = express.Router();
 const user = 
@@ -17,35 +18,11 @@ const user =
     }
 ]
 
-class validationClass{
-  constructor(error, field, field_value, condition, condition_value) {
-    this.error = error;
-    this.field = field;
-    this.field_value = field_value;
-    this.condition = condition;
-    this.condition_value = condition_value;
-  }
-}
-
-class dataClass{
-  constructor(validationClass){
-    this.validation = validationClass;
-  }
-}
-
-class responseClass {
-  constructor(message, status, dataClass) {
-    this.message = message;
-    this.status = status;
-    this.data = dataClass;
-  }
-}
-
 router.get('/', (req, res) => { res.send(user)})
 
 router.post('/validate-rule', (req, res) => 
 {
-  if(req.body != JSON)
+  if(req.body.constructor == ({}).constructor)
   {
     if(req.body.rule)
     {
